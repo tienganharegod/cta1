@@ -1,0 +1,4018 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luyện Thi Tiếng Anh - Ms Lê Hằng English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #8854C0;
+      --secondary: #FDCB6E;
+      --accent: #00C9A7;
+      --success: #00D26A;
+      --danger: #FF4757;
+      --warning: #FFA502;
+      --bg-card: #FFFFFF;
+      --text-main: #2D3436;
+      --text-muted: #636E72;
+      --border-color: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      min-height: 100vh;
+      color: var(--text-main);
+      background: linear-gradient(135deg, #a8c0ff 0%, #c8d6e5 20%, #fed6e3 45%, #d5fefd 70%, #a8c0ff 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 18s ease infinite;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 120px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating cute background elements */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      opacity: 0.35;
+      animation: floatAround 14s infinite ease-in-out alternate;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translateY(0) rotate(0deg) scale(0.9); }
+      50% { transform: translateY(-25px) rotate(15deg) scale(1.05); }
+      100% { transform: translateY(15px) rotate(-15deg) scale(0.95); }
+    }
+
+    /* Bottom Metro Road */
+    .bottom-railway {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 44px;
+      background: #2C3E50;
+      border-top: 5px solid #27AE60;
+      z-index: 9;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+    }
+
+    .railway-lines {
+      width: 200%;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, #FFFFFF, #FFFFFF 30px, transparent 30px, transparent 60px);
+      animation: moveRoad 3s linear infinite;
+    }
+
+    @keyframes moveRoad {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .animated-train {
+      position: fixed;
+      bottom: 10px;
+      left: -150px;
+      font-size: 28px;
+      z-index: 10;
+      animation: driveTrain 18s linear infinite;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    }
+
+    @keyframes driveTrain {
+      0% { left: -120px; }
+      100% { left: 105vw; }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 14px 16px 50px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Top Sticky Progress Bar */
+    .top-progress-bar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 10px 18px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      border: 2px solid #FFF;
+    }
+
+    .score-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 15px;
+      color: #FFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+
+    .badge-star {
+      background: linear-gradient(135deg, #FF6B8B, #FF8E53);
+    }
+
+    .badge-check {
+      background: linear-gradient(135deg, #00D26A, #00B894);
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 16px;
+      background: #E2E8F0;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid #FFF;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #FDCB6E, #00C9A7, #00D26A);
+      border-radius: 20px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Ms Le Hang Warning Notice */
+    .warning-banner {
+      background: linear-gradient(135deg, #FFF0F2 0%, #FFF5EB 100%);
+      border: 2px solid #FF7675;
+      border-left: 8px solid #FF4757;
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 16px rgba(255, 71, 87, 0.12);
+    }
+
+    .warning-title {
+      color: #D63031;
+      font-weight: 900;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .warning-text {
+      color: #4A4A4A;
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .warning-highlight {
+      color: #C0392B;
+      font-weight: 800;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background: #FFFFFF;
+      border-radius: 26px;
+      padding: 22px 26px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #F0F3F8;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #0984E3, #00CEC9);
+      color: #FFF;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0984E3, #6C5CE7, #E84393);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      color: #636E72;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-teacher-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F8E7F6;
+      color: #8854C0;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1.5px solid #E8C6EF;
+    }
+
+    .hero-illustration {
+      width: 120px;
+      height: 100px;
+      flex-shrink: 0;
+    }
+
+    /* Section Banner */
+    .section-badge-card {
+      background: linear-gradient(135deg, #6C5CE7, #a29bfe);
+      color: #FFF;
+      border-radius: 18px;
+      padding: 12px 18px;
+      margin: 28px 0 16px;
+      font-weight: 900;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 16px rgba(108, 92, 231, 0.25);
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border: 2px solid #EDF2F7;
+      position: relative;
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .q-number-pill {
+      background: #8854C0;
+      color: #FFF;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      box-shadow: 0 3px 0 #5E358A;
+    }
+
+    .q-type-pill {
+      background: #E8F0FE;
+      color: #1A73E8;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .q-text {
+      font-size: 17px;
+      font-weight: 700;
+      color: #2D3436;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .phonetic-target {
+      color: #D63031;
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* 3D Option Buttons */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 620px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      background: #FFFFFF;
+      border: 2px solid var(--border-color);
+      border-bottom: 5px solid #CBD5E1;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #2D3436;
+      text-align: left;
+      transition: all 0.15s ease;
+      user-select: none;
+      width: 100%;
+    }
+
+    .option-btn:hover:not(.disabled) {
+      transform: translateY(-2px);
+      border-color: #8854C0;
+      background: #FDFBFF;
+    }
+
+    .option-btn:active:not(.disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 2px;
+    }
+
+    .opt-letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #F1F2F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #57606F;
+      flex-shrink: 0;
+      font-size: 14.5px;
+    }
+
+    .option-btn.correct {
+      background: #EAFDF3 !important;
+      border-color: #00D26A !important;
+      border-bottom: 5px solid #00A352 !important;
+      color: #00733B !important;
+    }
+
+    .option-btn.correct .opt-letter {
+      background: #00D26A;
+      color: #FFF;
+    }
+
+    .option-btn.wrong {
+      background: #FFF1F2 !important;
+      border-color: #FF4757 !important;
+      border-bottom: 5px solid #D63031 !important;
+      color: #C0392B !important;
+      animation: shake 0.45s ease;
+    }
+
+    .option-btn.wrong .opt-letter {
+      background: #FF4757;
+      color: #FFF;
+    }
+
+    .option-btn.disabled {
+      cursor: default;
+      opacity: 0.88;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+
+    /* Explanation Container */
+    .explanation-box {
+      display: none;
+      background: #FAFBFF;
+      border: 2px dashed #8854C0;
+      border-radius: 20px;
+      padding: 18px 20px;
+      margin-top: 16px;
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-title {
+      color: #FF4757;
+      font-size: 16.5px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .translation-bar {
+      background: #FFF8E7;
+      border-left: 5px solid #FDCB6E;
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #2D3436;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .step-section {
+      margin-bottom: 16px;
+    }
+
+    .step-header {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #2D3436;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .exp-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .exp-item-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 14px;
+      line-height: 1.45;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .opt-name {
+      font-weight: 800;
+      color: #0984E3;
+      margin-right: 6px;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .badge-pill.bad {
+      background: #FFE8E6;
+      color: #FF4757;
+    }
+
+    .badge-pill.info {
+      background: #E8F0FE;
+      color: #2E86DE;
+    }
+
+    .badge-pill.good {
+      background: #E3FAEC;
+      color: #00B894;
+    }
+
+    .exp-item-desc {
+      color: #636E72;
+      font-weight: 600;
+    }
+
+    .why-correct-box {
+      background: #F0FFF4;
+      border: 1.5px solid #C6F6D5;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      color: #22543D;
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .why-wrong-box {
+      background: #FFF5F5;
+      border: 1.5px solid #FED7D7;
+      border-radius: 14px;
+      padding: 12px 16px;
+      color: #742A2A;
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .highlight-rule {
+      background: #FEFCBF;
+      color: #744210;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+    }
+
+    .highlight-target {
+      color: #00A352;
+      font-weight: 800;
+    }
+
+    .highlight-wrong {
+      color: #E53E3E;
+      font-weight: 800;
+    }
+
+    /* Submit Section */
+    .submit-bar {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #FF6B8B, #FF8E53);
+      color: #FFF;
+      border: none;
+      border-bottom: 6px solid #D63031;
+      border-radius: 25px;
+      padding: 16px 42px;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255, 107, 139, 0.35);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(255, 107, 139, 0.45);
+    }
+
+    .btn-submit:active {
+      transform: translateY(3px);
+      border-bottom-width: 2px;
+    }
+
+    /* Modal Result */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 28px;
+      padding: 32px 26px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      border: 4px solid #FDCB6E;
+      animation: popModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popModal {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon {
+      font-size: 58px;
+      margin-bottom: 10px;
+    }
+
+    .modal-score {
+      font-size: 40px;
+      font-weight: 900;
+      color: #8854C0;
+      margin-bottom: 6px;
+    }
+
+    .modal-feedback {
+      background: #F8F9FA;
+      border-left: 5px solid #8854C0;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 18px 0;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #2D3436;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .btn-retry {
+      background: linear-gradient(135deg, #00C9A7, #00B894);
+      color: #FFF;
+      border: none;
+      border-bottom: 5px solid #008f72;
+      border-radius: 20px;
+      padding: 14px 34px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-retry:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Promo Banner */
+    .promo-banner {
+      background: linear-gradient(135deg, #D63031 0%, #E84393 50%, #0984E3 100%);
+      border-radius: 22px;
+      padding: 20px 24px;
+      color: #FFF;
+      box-shadow: 0 10px 25px rgba(232, 67, 147, 0.25);
+      margin-top: 36px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .promo-title {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.3px;
+    }
+
+    .promo-phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      color: #D63031;
+      padding: 8px 22px;
+      border-radius: 25px;
+      font-weight: 900;
+      font-size: 18px;
+      margin: 4px 0 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .promo-sub {
+      font-size: 14.5px;
+      font-weight: 700;
+      opacity: 0.98;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern">
+    <svg class="floating-item" style="top: 6%; left: 5%; width: 44px; height: 44px;" viewBox="0 0 24 24" fill="#FDCB6E">
+      <path d="M12 1.5l3.09 6.26L22 8.77l-5 4.87 1.18 6.86L12 17.27l-6.18 3.23L7 13.64l-5-4.87 6.91-1.01L12 1.5z"/>
+    </svg>
+    <svg class="floating-item" style="top: 20%; right: 7%; width: 46px; height: 46px; animation-duration: 18s;" viewBox="0 0 24 24" fill="#FF7675">
+      <circle cx="12" cy="12" r="4" fill="#FDCB6E"/>
+      <circle cx="12" cy="5" r="3.5" fill="#FF7675"/>
+      <circle cx="19" cy="12" r="3.5" fill="#FF7675"/>
+      <circle cx="12" cy="19" r="3.5" fill="#FF7675"/>
+      <circle cx="5" cy="12" r="3.5" fill="#FF7675"/>
+    </svg>
+    <svg class="floating-item" style="top: 40%; left: 3%; width: 60px; height: 38px; animation-duration: 22s;" viewBox="0 0 24 24" fill="#FFFFFF">
+      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+    </svg>
+    <svg class="floating-item" style="top: 62%; right: 5%; width: 48px; height: 48px; animation-duration: 16s;" viewBox="0 0 24 24" fill="#8854C0">
+      <path d="M12 3c-4.97 0-9 3.58-9 8 0 2.45 1.25 4.67 3.23 6.13L5 21l4.47-1.49C10.27 19.8 11.12 20 12 20c4.97 0 9-3.58 9-8s-4.03-9-9-9zm-3 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+    </svg>
+    <svg class="floating-item" style="top: 85%; left: 6%; width: 42px; height: 42px; animation-duration: 20s;" viewBox="0 0 24 24" fill="#FF4757">
+      <path d="M12 3C8 3 4 7 4 12c0 4.5 4 9 8 9s8-4.5 8-9c0-5-4-9-8-9zm-1-1h2v2h-2V2z"/>
+    </svg>
+  </div>
+
+  <div class="bottom-railway">
+    <div class="railway-lines"></div>
+  </div>
+  <div class="animated-train">🚇 🚃 🚃</div>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container">
+
+    <div class="top-progress-bar">
+      <div class="score-badge badge-star">
+        <span>⭐</span>
+        <span id="starCounter">0</span>/40
+      </div>
+      <div class="progress-track">
+        <div id="progressBarFill" class="progress-fill"></div>
+      </div>
+      <div class="score-badge badge-check">
+        <span>✅</span>
+        <span id="correctCounter">0</span>/40
+      </div>
+    </div>
+
+    <div class="warning-banner">
+      <div class="warning-title">
+        <span>⚠️</span> LỜI NHẮC CỰC KỲ QUAN TRỌNG <span>⚠️</span>
+      </div>
+      <div class="warning-text">
+        Chỉ có <span class="warning-highlight">đọc kỹ giải thích ngay sau mỗi câu</span>, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên. Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+        <br><strong>Kéo tới đâu, làm tới đó! *</strong>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div>
+        <div class="hero-tag">
+          <span>🌟</span> BÀI KIỂM TRA CHUYÊN ĐỀ · ÔN THI 9 LÊN 10
+        </div>
+        <h1 class="hero-title">Đề Luyện Tập Tổng Hợp 40 Câu</h1>
+        <div class="hero-sub">Phát âm · Trọng âm · Giao tiếp · Chọn đáp án đúng · Viết lại câu & Kết hợp câu</div>
+        <div class="hero-teacher-pill">
+          <span>👩‍🏫</span> Giáo viên tạo: Ms Lê Hằng English
+        </div>
+      </div>
+      <svg class="hero-illustration" viewBox="0 0 160 140" fill="none">
+        <circle cx="80" cy="70" r="58" fill="#E8F4FD"/>
+        <rect x="35" y="45" width="28" height="65" rx="4" fill="#0984E3"/>
+        <rect x="70" y="25" width="34" height="85" rx="4" fill="#6C5CE7"/>
+        <rect x="110" y="55" width="24" height="55" rx="4" fill="#00CEC9"/>
+        <rect x="42" y="55" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="51" y="55" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="42" y="68" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="51" y="68" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="78" y="35" width="6" height="8" rx="1" fill="#FFEAA7"/>
+        <rect x="90" y="35" width="6" height="8" rx="1" fill="#FFEAA7"/>
+        <circle cx="130" cy="25" r="14" fill="#FDCB6E"/>
+      </svg>
+    </div>
+
+    <!-- TOÀN BỘ 40 CÂU HỎI ĐƯỢC CHÈN TRỰC TIẾP VÀO HTML -->
+    <div id="questionsContainer">
+      
+    <div class="section-badge-card">
+      <span>📂</span>
+      <div>
+        <div>DẠNG 1: PHÁT ÂM (PRONUNCIATION)</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Mark the letter A, B, C, or D to indicate the word whose underlined part differs from the other three in pronunciation.</div>
+      </div>
+    </div>
+        
+    <div class="question-card" id="card_1">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 1</span>
+        <span class="q-type-pill">DẠNG 1 - PHÁT ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:</div>
+      <div class="options-grid" id="optgrid_1">
+        
+        <button class="option-btn" data-qid="1" data-key="A" data-correct="false" onclick="chooseAnswer(1, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text"><u class='phonetic-target'>o</u>mit</div>
+        </button>
+        <button class="option-btn" data-qid="1" data-key="B" data-correct="false" onclick="chooseAnswer(1, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">c<u class='phonetic-target'>o</u>llect</div>
+        </button>
+        <button class="option-btn" data-qid="1" data-key="C" data-correct="true" onclick="chooseAnswer(1, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">disc<u class='phonetic-target'>o</u>unt</div>
+        </button>
+        <button class="option-btn" data-qid="1" data-key="D" data-correct="false" onclick="chooseAnswer(1, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">pr<u class='phonetic-target'>o</u>duce</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_1">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">omit</span>
+            <span class="badge-pill info">/ə/</span>
+            <span class="exp-item-desc">= /əˈmɪt/ (v): bỏ sót - chữ 'o' phát âm là /ə/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">collect</span>
+            <span class="badge-pill info">/ə/</span>
+            <span class="exp-item-desc">= /kəˈlekt/ (v): thu thập - chữ 'o' phát âm là /ə/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">discount</span>
+            <span class="badge-pill good">/aʊ/</span>
+            <span class="exp-item-desc">= /ˈdɪs.kaʊnt/ (n): giảm giá - chữ 'o' trong vần 'ou' phát âm là /aʊ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">produce</span>
+            <span class="badge-pill info">/ə/</span>
+            <span class="exp-item-desc">= /prəˈdjuːs/ (v): sản xuất - chữ 'o' phát âm là /ə/</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Nguyên âm đơn /ə/ vs nguyên âm đôi /aʊ/:</span> 
+          Chữ 'o' trong từ <span class='highlight-target'>discount</span> nằm trong tổ hợp âm đôi <strong>/aʊ/</strong>, trong khi ở 3 từ còn lại 'omit', 'collect', 'produce' đều là âm nhẹ không nhấn trọng âm đọc là <strong>/ə/</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">omit</span>: chữ 'o' phát âm là /ə/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">collect</span>: chữ 'o' phát âm là /ə/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">produce</span>: chữ 'o' phát âm là /ə/.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_2">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 2</span>
+        <span class="q-type-pill">DẠNG 1 - PHÁT ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:</div>
+      <div class="options-grid" id="optgrid_2">
+        
+        <button class="option-btn" data-qid="2" data-key="A" data-correct="false" onclick="chooseAnswer(2, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">p<u class='phonetic-target'>a</u>vement</div>
+        </button>
+        <button class="option-btn" data-qid="2" data-key="B" data-correct="false" onclick="chooseAnswer(2, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">fr<u class='phonetic-target'>a</u>grance</div>
+        </button>
+        <button class="option-btn" data-qid="2" data-key="C" data-correct="false" onclick="chooseAnswer(2, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">l<u class='phonetic-target'>a</u>yer</div>
+        </button>
+        <button class="option-btn" data-qid="2" data-key="D" data-correct="true" onclick="chooseAnswer(2, 'D', true, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">l<u class='phonetic-target'>a</u>ntern</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_2">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">pavement</span>
+            <span class="badge-pill info">/eɪ/</span>
+            <span class="exp-item-desc">= /ˈpeɪv.mənt/ (n): vỉa hè - chữ 'a' phát âm là /eɪ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">fragrance</span>
+            <span class="badge-pill info">/eɪ/</span>
+            <span class="exp-item-desc">= /ˈfreɪ.ɡrəns/ (n): hương thơm - chữ 'a' phát âm là /eɪ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">layer</span>
+            <span class="badge-pill info">/eɪ/</span>
+            <span class="exp-item-desc">= /ˈleɪ.ər/ (n): tầng, lớp - chữ 'a' phát âm là /eɪ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">lantern</span>
+            <span class="badge-pill good">/æ/</span>
+            <span class="exp-item-desc">= /ˈlæn.tən/ (n): đèn lồng - chữ 'a' phát âm là /æ/</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Phát âm nguyên âm 'a': /eɪ/ vs /æ/:</span> 
+          Từ <span class='highlight-target'>lantern</span> có chữ 'a' được phát âm là nguyên âm bẹt <strong>/æ/</strong>, trong khi 'pavement', 'fragrance' và 'layer' đều phát âm là nguyên âm đôi <strong>/eɪ/</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">pavement</span>: chữ 'a' phát âm là /eɪ/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">fragrance</span>: chữ 'a' phát âm là /eɪ/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">layer</span>: chữ 'a' phát âm là /eɪ/.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_3">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 3</span>
+        <span class="q-type-pill">DẠNG 1 - PHÁT ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:</div>
+      <div class="options-grid" id="optgrid_3">
+        
+        <button class="option-btn" data-qid="3" data-key="A" data-correct="false" onclick="chooseAnswer(3, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">p<u class='phonetic-target'>u</u>blic</div>
+        </button>
+        <button class="option-btn" data-qid="3" data-key="B" data-correct="false" onclick="chooseAnswer(3, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">f<u class='phonetic-target'>u</u>nction</div>
+        </button>
+        <button class="option-btn" data-qid="3" data-key="C" data-correct="true" onclick="chooseAnswer(3, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">sub<u class='phonetic-target'>u</u>rb</div>
+        </button>
+        <button class="option-btn" data-qid="3" data-key="D" data-correct="false" onclick="chooseAnswer(3, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">r<u class='phonetic-target'>u</u>bbish</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_3">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">public</span>
+            <span class="badge-pill info">/ʌ/</span>
+            <span class="exp-item-desc">= /ˈpʌb.lɪk/ (adj): công cộng - chữ 'u' phát âm là /ʌ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">function</span>
+            <span class="badge-pill info">/ʌ/</span>
+            <span class="exp-item-desc">= /ˈfʌŋk.ʃən/ (n): chức năng - chữ 'u' phát âm là /ʌ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">suburb</span>
+            <span class="badge-pill good">/ɜː/</span>
+            <span class="exp-item-desc">= /ˈsʌb.ɜːb/ (n): ngoại ô - chữ 'u' thứ hai phát âm là /ɜː/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">rubbish</span>
+            <span class="badge-pill info">/ʌ/</span>
+            <span class="exp-item-desc">= /ˈrʌb.ɪʃ/ (n): rác rưởi - chữ 'u' phát âm là /ʌ/</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Phát âm nguyên âm 'u': /ʌ/ vs /ɜː/:</span> 
+          Phần gạch chân ở chữ 'u' thứ hai của từ <span class='highlight-target'>suburb</span> phát âm là <strong>/ɜː/</strong>, còn 'public', 'function', 'rubbish' đều có chữ 'u' phát âm là âm ngắn <strong>/ʌ/</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">public</span>: chữ 'u' phát âm là /ʌ/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">function</span>: chữ 'u' phát âm là /ʌ/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">rubbish</span>: chữ 'u' phát âm là /ʌ/.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_4">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 4</span>
+        <span class="q-type-pill">DẠNG 1 - PHÁT ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:</div>
+      <div class="options-grid" id="optgrid_4">
+        
+        <button class="option-btn" data-qid="4" data-key="A" data-correct="false" onclick="chooseAnswer(4, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">prop<u class='phonetic-target'>e</u>rty</div>
+        </button>
+        <button class="option-btn" data-qid="4" data-key="B" data-correct="true" onclick="chooseAnswer(4, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text"><u class='phonetic-target'>e</u>quipment</div>
+        </button>
+        <button class="option-btn" data-qid="4" data-key="C" data-correct="false" onclick="chooseAnswer(4, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">produc<u class='phonetic-target'>e</u>r</div>
+        </button>
+        <button class="option-btn" data-qid="4" data-key="D" data-correct="false" onclick="chooseAnswer(4, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">souv<u class='phonetic-target'>e</u>nir</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_4">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">property</span>
+            <span class="badge-pill info">/ə/</span>
+            <span class="exp-item-desc">= /ˈprɒp.ə.ti/ (n): tài sản - chữ 'e' phát âm là /ə/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">equipment</span>
+            <span class="badge-pill good">/ɪ/</span>
+            <span class="exp-item-desc">= /ɪˈkwɪp.mənt/ (n): thiết bị - chữ 'e' đầu tiên phát âm là /ɪ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">producer</span>
+            <span class="badge-pill info">/ə/</span>
+            <span class="exp-item-desc">= /prəˈdjuː.sər/ (n): nhà sản xuất - chữ 'e' phát âm là /ə/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">souvenir</span>
+            <span class="badge-pill info">/ə/</span>
+            <span class="exp-item-desc">= /ˌsuː.vənˈɪər/ (n): quà lưu niệm - chữ 'e' phát âm là /ə/</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Phát âm nguyên âm 'e': /ɪ/ vs /ə/:</span> 
+          Chữ 'e' trong từ <span class='highlight-target'>equipment</span> được phát âm là <strong>/ɪ/</strong>, trong khi ở 3 từ còn lại đều được phát âm giảm âm thành âm schwa <strong>/ə/</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">property</span>: chữ 'e' phát âm là /ə/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">producer</span>: chữ 'e' phát âm là /ə/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">souvenir</span>: chữ 'e' phát âm là /ə/.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_5">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 5</span>
+        <span class="q-type-pill">DẠNG 1 - PHÁT ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:</div>
+      <div class="options-grid" id="optgrid_5">
+        
+        <button class="option-btn" data-qid="5" data-key="A" data-correct="false" onclick="chooseAnswer(5, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">h<u class='phonetic-target'>a</u>ndicraft</div>
+        </button>
+        <button class="option-btn" data-qid="5" data-key="B" data-correct="false" onclick="chooseAnswer(5, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">biog<u class='phonetic-target'>a</u>s</div>
+        </button>
+        <button class="option-btn" data-qid="5" data-key="C" data-correct="true" onclick="chooseAnswer(5, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">adv<u class='phonetic-target'>a</u>ntage</div>
+        </button>
+        <button class="option-btn" data-qid="5" data-key="D" data-correct="false" onclick="chooseAnswer(5, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text"><u class='phonetic-target'>a</u>rtisan</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_5">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">handicraft</span>
+            <span class="badge-pill info">/æ/</span>
+            <span class="exp-item-desc">= /ˈhæn.dɪ.krɑːft/ - âm /æ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">biogas</span>
+            <span class="badge-pill info">/æ/</span>
+            <span class="exp-item-desc">= /ˈbaɪ.əʊˌɡæs/ - âm /æ/</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">advantage</span>
+            <span class="badge-pill good">/ɑː/</span>
+            <span class="exp-item-desc">= /ədˈvɑːn.tɪdʒ/ - âm /ɑː/ dài</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">artisan</span>
+            <span class="badge-pill info">/æ/</span>
+            <span class="exp-item-desc">= /ˈɑː.tɪ.zæn/ - âm cuối /æ/</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Nguyên âm dài /ɑː/ vs nguyên âm bẹt /æ/:</span> 
+          Trong tiếng Anh - Anh chuẩn theo SGK Global Success, âm 'a' được nhấn trong <span class='highlight-target'>advantage</span> đọc là âm dài <strong>/ɑː/</strong> (/ədˈvɑːn.tɪdʒ/), khác với các âm <strong>/æ/</strong> ở handicraft và biogas.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">handicraft</span>: phát âm là /æ/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">biogas</span>: phát âm là /æ/.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">artisan</span>: phát âm có chứa âm /æ/ ở vần cuối.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-badge-card">
+      <span>📂</span>
+      <div>
+        <div>DẠNG 2: TRỌNG ÂM (PRIMARY STRESS)</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Mark the letter A, B, C, or D to indicate the word that differs from the other three in the position of primary stress.</div>
+      </div>
+    </div>
+        
+    <div class="question-card" id="card_6">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 6</span>
+        <span class="q-type-pill">DẠNG 2 - TRỌNG ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:</div>
+      <div class="options-grid" id="optgrid_6">
+        
+        <button class="option-btn" data-qid="6" data-key="A" data-correct="true" onclick="chooseAnswer(6, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">optimistic</div>
+        </button>
+        <button class="option-btn" data-qid="6" data-key="B" data-correct="false" onclick="chooseAnswer(6, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">facility</div>
+        </button>
+        <button class="option-btn" data-qid="6" data-key="C" data-correct="false" onclick="chooseAnswer(6, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">reliable</div>
+        </button>
+        <button class="option-btn" data-qid="6" data-key="D" data-correct="false" onclick="chooseAnswer(6, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">anxiety</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_6">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">optimistic</span>
+            <span class="badge-pill good">trọng âm 3</span>
+            <span class="exp-item-desc">= /ˌɒp.tɪˈmɪs.tɪk/ - đuôi -ic nhận trọng âm rơi vào âm 3</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">facility</span>
+            <span class="badge-pill info">trọng âm 2</span>
+            <span class="exp-item-desc">= /fəˈsɪl.ə.ti/ - đuôi -ity nhận trọng âm âm 2</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">reliable</span>
+            <span class="badge-pill info">trọng âm 2</span>
+            <span class="exp-item-desc">= /rɪˈlaɪ.ə.bəl/ - trọng âm rơi vào âm 2</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">anxiety</span>
+            <span class="badge-pill info">trọng âm 2</span>
+            <span class="exp-item-desc">= /æŋˈzaɪ.ə.ti/ - đuôi -ety nhận trọng âm âm 2</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Hậu tố -ic và -ity:</span> 
+          Từ <span class='highlight-target'>optimistic</span> có hậu tố '-ic' làm trọng âm rơi vào âm tiết thứ ba (3), trong khi 'facility', 'reliable', 'anxiety' đều có trọng âm rơi vào âm tiết thứ hai (2).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">facility</span>: trọng âm rơi vào âm tiết thứ 2.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">reliable</span>: trọng âm rơi vào âm tiết thứ 2.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">anxiety</span>: trọng âm rơi vào âm tiết thứ 2.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_7">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 7</span>
+        <span class="q-type-pill">DẠNG 2 - TRỌNG ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:</div>
+      <div class="options-grid" id="optgrid_7">
+        
+        <button class="option-btn" data-qid="7" data-key="A" data-correct="false" onclick="chooseAnswer(7, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">balance</div>
+        </button>
+        <button class="option-btn" data-qid="7" data-key="B" data-correct="false" onclick="chooseAnswer(7, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">manage</div>
+        </button>
+        <button class="option-btn" data-qid="7" data-key="C" data-correct="true" onclick="chooseAnswer(7, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">delay</div>
+        </button>
+        <button class="option-btn" data-qid="7" data-key="D" data-correct="false" onclick="chooseAnswer(7, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">physics</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_7">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">balance</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈbæl.əns/ - nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">manage</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈmæn.ɪdʒ/ - nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">delay</span>
+            <span class="badge-pill good">trọng âm 2</span>
+            <span class="exp-item-desc">= /dɪˈleɪ/ - nhấn âm 2</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">physics</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈfɪz.ɪks/ - nhấn âm 1</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Quy tắc trọng âm từ 2 âm tiết:</span> 
+          Động từ <span class='highlight-target'>delay</span> /dɪˈleɪ/ có trọng âm rơi vào âm tiết thứ hai (2), trong khi 'balance', 'manage', 'physics' đều có trọng âm rơi vào âm tiết thứ nhất (1).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">balance</span>: trọng âm rơi vào âm 1.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">manage</span>: động từ 2 âm tiết đặc biệt có trọng âm rơi vào âm 1.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">physics</span>: danh từ 2 âm tiết có trọng âm rơi vào âm 1.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_8">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 8</span>
+        <span class="q-type-pill">DẠNG 2 - TRỌNG ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:</div>
+      <div class="options-grid" id="optgrid_8">
+        
+        <button class="option-btn" data-qid="8" data-key="A" data-correct="false" onclick="chooseAnswer(8, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">pickpocket</div>
+        </button>
+        <button class="option-btn" data-qid="8" data-key="B" data-correct="true" onclick="chooseAnswer(8, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">distraction</div>
+        </button>
+        <button class="option-btn" data-qid="8" data-key="C" data-correct="false" onclick="chooseAnswer(8, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">neighborhood</div>
+        </button>
+        <button class="option-btn" data-qid="8" data-key="D" data-correct="false" onclick="chooseAnswer(8, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">pottery</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_8">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">pickpocket</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈpɪkˌpɒk.ɪt/ - nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">distraction</span>
+            <span class="badge-pill good">trọng âm 2</span>
+            <span class="exp-item-desc">= /dɪˈstræk.ʃən/ - đuôi -tion làm trọng âm rơi vào âm 2</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">neighborhood</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈneɪ.bə.hʊd/ - nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">pottery</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈpɒt.ər.i/ - nhấn âm 1</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Hậu tố -tion quy định trọng âm rơi vào âm tiết liền trước:</span> 
+          Từ <span class='highlight-target'>distraction</span> có hậu tố '-tion' nên trọng âm rơi vào âm thứ hai (2) <strong>/dɪˈstræk.ʃən/</strong>, trong khi 'pickpocket', 'neighborhood', 'pottery' đều có trọng âm rơi vào âm thứ nhất (1).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">pickpocket</span>: danh từ ghép có trọng âm rơi vào âm 1.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">neighborhood</span>: danh từ 3 âm tiết có trọng âm rơi vào âm 1.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">pottery</span>: danh từ 3 âm tiết có trọng âm rơi vào âm 1.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_9">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 9</span>
+        <span class="q-type-pill">DẠNG 2 - TRỌNG ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:</div>
+      <div class="options-grid" id="optgrid_9">
+        
+        <button class="option-btn" data-qid="9" data-key="A" data-correct="false" onclick="chooseAnswer(9, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">convenient</div>
+        </button>
+        <button class="option-btn" data-qid="9" data-key="B" data-correct="false" onclick="chooseAnswer(9, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">amenity</div>
+        </button>
+        <button class="option-btn" data-qid="9" data-key="C" data-correct="true" onclick="chooseAnswer(9, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">firefighter</div>
+        </button>
+        <button class="option-btn" data-qid="9" data-key="D" data-correct="false" onclick="chooseAnswer(9, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">additional</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_9">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">convenient</span>
+            <span class="badge-pill info">trọng âm 2</span>
+            <span class="exp-item-desc">= /kənˈviː.ni.ənt/ - nhấn âm 2</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">amenity</span>
+            <span class="badge-pill info">trọng âm 2</span>
+            <span class="exp-item-desc">= /əˈmiː.nə.ti/ - nhấn âm 2</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">firefighter</span>
+            <span class="badge-pill good">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈfaɪəˌfaɪ.tər/ - danh từ ghép nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">additional</span>
+            <span class="badge-pill info">trọng âm 2</span>
+            <span class="exp-item-desc">= /əˈdɪʃ.ən.əl/ - nhấn âm 2</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Quy tắc trọng âm danh từ ghép vs từ 3-4 âm tiết:</span> 
+          Từ <span class='highlight-target'>firefighter</span> là danh từ ghép có trọng âm chính rơi vào từ thành phần thứ nhất (âm 1), trong khi 'convenient', 'amenity', 'additional' đều có trọng âm rơi vào âm tiết thứ hai (2).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">convenient</span>: trọng âm rơi vào âm 2.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">amenity</span>: đuôi -ity trọng âm rơi vào âm ngay trước nó (âm 2).</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">additional</span>: đuôi -al từ addition, trọng âm rơi vào âm 2.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_10">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 10</span>
+        <span class="q-type-pill">DẠNG 2 - TRỌNG ÂM</span>
+      </div>
+      <div class="q-text">Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:</div>
+      <div class="options-grid" id="optgrid_10">
+        
+        <button class="option-btn" data-qid="10" data-key="A" data-correct="true" onclick="chooseAnswer(10, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">teen-friendly</div>
+        </button>
+        <button class="option-btn" data-qid="10" data-key="B" data-correct="false" onclick="chooseAnswer(10, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">house-warming</div>
+        </button>
+        <button class="option-btn" data-qid="10" data-key="C" data-correct="false" onclick="chooseAnswer(10, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">drop-off</div>
+        </button>
+        <button class="option-btn" data-qid="10" data-key="D" data-correct="false" onclick="chooseAnswer(10, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">check-up</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_10">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">teen-friendly</span>
+            <span class="badge-pill good">trọng âm 2</span>
+            <span class="exp-item-desc">= /ˌtiːnˈfrend.li/ - tính từ ghép nhấn từ thứ hai</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">house-warming</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈhaʊsˌwɔː.mɪŋ/ - danh từ ghép nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">drop-off</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈdrɒp.ɒf/ - danh từ ghép nhấn âm 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">check-up</span>
+            <span class="badge-pill info">trọng âm 1</span>
+            <span class="exp-item-desc">= /ˈtʃek.ʌp/ - danh từ ghép nhấn âm 1</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Tính từ ghép vs Danh từ ghép:</span> 
+          Tính từ ghép <span class='highlight-target'>teen-friendly</span> /ˌtiːnˈfrend.li/ có trọng âm chính nhấn vào phần tính từ thứ hai, trong khi cả 3 từ còn lại ('house-warming', 'drop-off', 'check-up') đều là danh từ ghép nên trọng âm chính rơi vào âm tiết thứ nhất (1).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">house-warming</span>: danh từ ghép có trọng âm rơi vào âm 1.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">drop-off</span>: danh từ có nguồn gốc cụm động từ có trọng âm rơi vào âm 1.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">check-up</span>: danh từ có nguồn gốc cụm động từ có trọng âm rơi vào âm 1.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-badge-card">
+      <span>📂</span>
+      <div>
+        <div>DẠNG 3: TÌNH HUỐNG GIAO TIẾP (COMMUNICATION)</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Mark the letter A, B, C, or D to indicate the option that best completes each of the following exchanges.</div>
+      </div>
+    </div>
+        
+    <div class="question-card" id="card_11">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 11</span>
+        <span class="q-type-pill">DẠNG 3 - TÌNH HUỐNG GIAO TIẾP</span>
+      </div>
+      <div class="q-text">Ngoc: “Sorry, I didn’t post the event notice on the community board.”<br>Hong: “______”</div>
+      <div class="options-grid" id="optgrid_11">
+        
+        <button class="option-btn" data-qid="11" data-key="A" data-correct="false" onclick="chooseAnswer(11, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">Sure, I’d love to.</div>
+        </button>
+        <button class="option-btn" data-qid="11" data-key="B" data-correct="false" onclick="chooseAnswer(11, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">That’s so nice of you.</div>
+        </button>
+        <button class="option-btn" data-qid="11" data-key="C" data-correct="true" onclick="chooseAnswer(11, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">Don’t worry. I’ll do it for you.</div>
+        </button>
+        <button class="option-btn" data-qid="11" data-key="D" data-correct="false" onclick="chooseAnswer(11, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">Are you mad at me?</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_11">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Ngọc: 'Xin lỗi, tớ quên chưa đăng thông báo sự kiện lên bảng tin cộng đồng.' - Hồng: 'Đừng lo, để tớ làm giúp cho.'</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Sure, I’d love to.</span>
+            <span class="badge-pill bad">Đồng ý lời mời</span>
+            <span class="exp-item-desc">= không dùng đáp lại lời xin lỗi</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">That’s so nice of you.</span>
+            <span class="badge-pill bad">Khen ngợi</span>
+            <span class="exp-item-desc">= dùng khi cảm ơn</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Don’t worry. I’ll do it for you.</span>
+            <span class="badge-pill good">Lời an ủi & giúp đỡ</span>
+            <span class="exp-item-desc">= đáp lại lời xin lỗi lịch sự nhất</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Are you mad at me?</span>
+            <span class="badge-pill bad">Cậu giận tớ à?</span>
+            <span class="exp-item-desc">= sai ngữ cảnh</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Đáp lại lời xin lỗi:</span> 
+          Don’t worry. I’ll do it for you thể hiện sự thông cảm và giúp đỡ bạn mình.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Sure, I’d love to.</span>: dùng đáp lại lời mời.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">That’s so nice of you.</span>: dùng cảm ơn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Are you mad at me?</span>: sai tâm lý giao tiếp.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_12">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 12</span>
+        <span class="q-type-pill">DẠNG 3 - TÌNH HUỐNG GIAO TIẾP</span>
+      </div>
+      <div class="q-text">Jack: “How about having a salad for lunch today?”<br>Dave: “______”</div>
+      <div class="options-grid" id="optgrid_12">
+        
+        <button class="option-btn" data-qid="12" data-key="A" data-correct="true" onclick="chooseAnswer(12, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">Great idea! It’s light and healthy.</div>
+        </button>
+        <button class="option-btn" data-qid="12" data-key="B" data-correct="false" onclick="chooseAnswer(12, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">No problem.</div>
+        </button>
+        <button class="option-btn" data-qid="12" data-key="C" data-correct="false" onclick="chooseAnswer(12, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">No, let’s order the bill.</div>
+        </button>
+        <button class="option-btn" data-qid="12" data-key="D" data-correct="false" onclick="chooseAnswer(12, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">That sounds negative!</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_12">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Jack: 'Trưa nay ăn salad nhé?' - Dave: 'Ý kiến hay đấy! Món đó nhẹ bụng và lành mạnh.'</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Great idea! It’s light and healthy.</span>
+            <span class="badge-pill good">Ý kiến hay!</span>
+            <span class="exp-item-desc">= đồng ý lời gợi ý món ăn</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">No problem.</span>
+            <span class="badge-pill bad">Không có gì</span>
+            <span class="exp-item-desc">= dùng đáp lại lời cảm ơn</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">No, let’s order the bill.</span>
+            <span class="badge-pill bad">Thanh toán đi</span>
+            <span class="exp-item-desc">= chưa ăn không thể thanh toán</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">That sounds negative!</span>
+            <span class="badge-pill bad">Nghe tiêu cực thế</span>
+            <span class="exp-item-desc">= sai nghĩa</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Đáp lại lời đề xuất How about...?:</span> 
+          Great idea! It’s light and healthy thể hiện sự đồng tình nhiệt tình với lời rủ ăn trưa.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">No problem.</span>: dùng đáp lại lời cảm ơn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">No, let’s order the bill.</span>: phi logic.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">That sounds negative!</span>: sai nghĩa.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-badge-card">
+      <span>📂</span>
+      <div>
+        <div>DẠNG 4: CHỌN ĐÁP ÁN ĐÚNG (VOCABULARY & GRAMMAR)</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Mark the letter A, B, C, or D to indicate the correct answer to each of the following questions.</div>
+      </div>
+    </div>
+        
+    <div class="question-card" id="card_13">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 13</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">Before going grocery shopping, teenagers should ______ a list of all the nutritious ingredients they need for the week.</div>
+      <div class="options-grid" id="optgrid_13">
+        
+        <button class="option-btn" data-qid="13" data-key="A" data-correct="false" onclick="chooseAnswer(13, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">cause</div>
+        </button>
+        <button class="option-btn" data-qid="13" data-key="B" data-correct="true" onclick="chooseAnswer(13, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">make</div>
+        </button>
+        <button class="option-btn" data-qid="13" data-key="C" data-correct="false" onclick="chooseAnswer(13, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">get</div>
+        </button>
+        <button class="option-btn" data-qid="13" data-key="D" data-correct="false" onclick="chooseAnswer(13, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">put</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_13">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Trước khi đi mua sắm, các bạn thiếu niên nên lập một danh sách các nguyên liệu dinh dưỡng cần thiết.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">cause</span>
+            <span class="badge-pill bad">gây ra</span>
+            <span class="exp-item-desc">= gây ra hậu quả xấu</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">make</span>
+            <span class="badge-pill good">make a list</span>
+            <span class="exp-item-desc">= lập danh sách</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">get</span>
+            <span class="badge-pill bad">lấy, nhận</span>
+            <span class="exp-item-desc">= không đi với a list theo nghĩa lập danh sách</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">put</span>
+            <span class="badge-pill bad">đặt, để</span>
+            <span class="exp-item-desc">= sai collocation</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Collocation: Make a list:</span> 
+          Trong tiếng Anh, hành động lập một bản danh sách luôn đi với động từ 'make': <span class='highlight-target'>make a list</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">cause</span>: mang nghĩa gây ra hậu quả xấu.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">get</span>: không đi với 'a list' theo nghĩa soạn danh sách.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">put</span>: chỉ đi với 'put on a list' chứ không đứng một mình làm động từ chính.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_14">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 14</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">The local library is wondering ______ to invite for a workshop on organizing book collections efficiently.</div>
+      <div class="options-grid" id="optgrid_14">
+        
+        <button class="option-btn" data-qid="14" data-key="A" data-correct="false" onclick="chooseAnswer(14, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">why</div>
+        </button>
+        <button class="option-btn" data-qid="14" data-key="B" data-correct="false" onclick="chooseAnswer(14, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">where</div>
+        </button>
+        <button class="option-btn" data-qid="14" data-key="C" data-correct="true" onclick="chooseAnswer(14, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">who</div>
+        </button>
+        <button class="option-btn" data-qid="14" data-key="D" data-correct="false" onclick="chooseAnswer(14, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">what</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_14">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Thư viện địa phương đang băn khoăn không biết nên mời ai đến dự buổi hội thảo.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">why</span>
+            <span class="badge-pill bad">tại sao</span>
+            <span class="exp-item-desc">= không hợp nghĩa</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">where</span>
+            <span class="badge-pill bad">ở đâu</span>
+            <span class="exp-item-desc">= mời người chứ không mời nơi chốn</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">who</span>
+            <span class="badge-pill good">ai</span>
+            <span class="exp-item-desc">= who to invite: mời ai</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">what</span>
+            <span class="badge-pill bad">cái gì</span>
+            <span class="exp-item-desc">= chỉ đồ vật</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Từ để hỏi + to-V:</span> 
+          Động từ 'invite' (mời) bắt buộc phải có đối tượng tân ngữ là con người. Do đó, từ để hỏi thích hợp nhất là <span class='highlight-target'>who to invite</span> (mời ai).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">why</span>: không thể dùng 'why to invite'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">where</span>: chỉ nơi chốn, không khớp với động từ mời người.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">what</span>: chỉ đồ vật, không dùng làm khách mời hội thảo.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_15">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 15</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">We saw a(n) ______ directing traffic near the main intersection.</div>
+      <div class="options-grid" id="optgrid_15">
+        
+        <button class="option-btn" data-qid="15" data-key="A" data-correct="false" onclick="chooseAnswer(15, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">underground system</div>
+        </button>
+        <button class="option-btn" data-qid="15" data-key="B" data-correct="true" onclick="chooseAnswer(15, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">police officer</div>
+        </button>
+        <button class="option-btn" data-qid="15" data-key="C" data-correct="false" onclick="chooseAnswer(15, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">public amenity</div>
+        </button>
+        <button class="option-btn" data-qid="15" data-key="D" data-correct="false" onclick="chooseAnswer(15, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">electrical wire</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_15">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chúng tôi thấy một cảnh sát đang điều tiết giao thông gần ngã tư chính.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">underground system</span>
+            <span class="badge-pill bad">tàu ngầm</span>
+            <span class="exp-item-desc">= không thể điều tiết xe</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">police officer</span>
+            <span class="badge-pill good">cảnh sát</span>
+            <span class="exp-item-desc">= người điều khiển giao thông</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">public amenity</span>
+            <span class="badge-pill bad">tiện ích công</span>
+            <span class="exp-item-desc">= công viên/thư viện</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">electrical wire</span>
+            <span class="badge-pill bad">dây điện</span>
+            <span class="exp-item-desc">= vật vô tri</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Directing traffic:</span> 
+          Hành động 'directing traffic' (phân luồng/điều khiển giao thông) chỉ có thể được thực hiện bởi con người có nhiệm vụ, cụ thể là <span class='highlight-target'>police officer</span> (cảnh sát giao thông).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">underground system</span>: là hệ thống tàu điện ngầm.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">public amenity</span>: là công trình tiện ích công cộng.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">electrical wire</span>: là đường dây điện.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_16">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 16</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">Nhi and Mai have been assigned to ______ with a new plan for waste sorting.</div>
+      <div class="options-grid" id="optgrid_16">
+        
+        <button class="option-btn" data-qid="16" data-key="A" data-correct="true" onclick="chooseAnswer(16, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">come up</div>
+        </button>
+        <button class="option-btn" data-qid="16" data-key="B" data-correct="false" onclick="chooseAnswer(16, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">hang out</div>
+        </button>
+        <button class="option-btn" data-qid="16" data-key="C" data-correct="false" onclick="chooseAnswer(16, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">take care</div>
+        </button>
+        <button class="option-btn" data-qid="16" data-key="D" data-correct="false" onclick="chooseAnswer(16, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">go down</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_16">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nhi và Mai được giao nhiệm vụ nghĩ ra một kế hoạch mới để phân loại rác.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">come up</span>
+            <span class="badge-pill good">come up with</span>
+            <span class="exp-item-desc">= nghĩ ra (ý tưởng/kế hoạch)</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">hang out</span>
+            <span class="badge-pill bad">tụ tập</span>
+            <span class="exp-item-desc">= đi chơi</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">take care</span>
+            <span class="badge-pill bad">take care of</span>
+            <span class="exp-item-desc">= chăm sóc (đi với of)</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">go down</span>
+            <span class="badge-pill bad">mắc bệnh</span>
+            <span class="exp-item-desc">= ngã bệnh</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Come up with:</span> 
+          Cụm phrasal verb kinh điển: <span class='highlight-target'>come up with a plan / an idea</span> mang nghĩa là nghĩ ra hoặc đề xuất một kế hoạch/ý tưởng.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">hang out</span>: 'hang out with' nghĩa là đi tụ tập chơi bời với ai.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">take care</span>: phải dùng 'take care of'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">go down</span>: 'go down with' nghĩa là bị ốm/nhiễm bệnh.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_17">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 17</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">Teenagers usually get ______ eyes from spending too long on screens.</div>
+      <div class="options-grid" id="optgrid_17">
+        
+        <button class="option-btn" data-qid="17" data-key="A" data-correct="false" onclick="chooseAnswer(17, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">coastal</div>
+        </button>
+        <button class="option-btn" data-qid="17" data-key="B" data-correct="false" onclick="chooseAnswer(17, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">congested</div>
+        </button>
+        <button class="option-btn" data-qid="17" data-key="C" data-correct="false" onclick="chooseAnswer(17, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">thankful</div>
+        </button>
+        <button class="option-btn" data-qid="17" data-key="D" data-correct="true" onclick="chooseAnswer(17, 'D', true, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">itchy</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_17">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Thanh thiếu niên thường bị ngứa/cộm mắt vì nhìn màn hình quá lâu.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">coastal</span>
+            <span class="badge-pill bad">ven biển</span>
+            <span class="exp-item-desc">= vùng biển</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">congested</span>
+            <span class="badge-pill bad">tắc nghẽn</span>
+            <span class="exp-item-desc">= tắc đường</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">thankful</span>
+            <span class="badge-pill bad">biết ơn</span>
+            <span class="exp-item-desc">= tâm trạng</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">itchy</span>
+            <span class="badge-pill good">ngứa ngáy</span>
+            <span class="exp-item-desc">= itchy eyes: ngứa mắt</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Từ vựng sức khỏe Unit 2:</span> 
+          Nhìn màn hình quá lâu khiến mắt bị khô và ngứa: cụm từ chính xác trong y tế và đời sống là <span class='highlight-target'>itchy eyes</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">coastal</span>: thuộc vùng duyên hải.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">congested</span>: tắc nghẽn giao thông.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">thankful</span>: cảm thấy biết ơn.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_18">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 18</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">It’s important for teens to ______ the law about curfews for their own safety.</div>
+      <div class="options-grid" id="optgrid_18">
+        
+        <button class="option-btn" data-qid="18" data-key="A" data-correct="false" onclick="chooseAnswer(18, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">produce</div>
+        </button>
+        <button class="option-btn" data-qid="18" data-key="B" data-correct="false" onclick="chooseAnswer(18, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">remain</div>
+        </button>
+        <button class="option-btn" data-qid="18" data-key="C" data-correct="true" onclick="chooseAnswer(18, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">obey</div>
+        </button>
+        <button class="option-btn" data-qid="18" data-key="D" data-correct="false" onclick="chooseAnswer(18, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">remind</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_18">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Điều quan trọng là thiếu niên phải tuân thủ luật giờ giới nghiêm để bảo vệ bản thân.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">produce</span>
+            <span class="badge-pill bad">sản xuất</span>
+            <span class="exp-item-desc">= làm ra đồ vật</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">remain</span>
+            <span class="badge-pill bad">duy trì</span>
+            <span class="exp-item-desc">= giữ nguyên</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">obey</span>
+            <span class="badge-pill good">tuân theo</span>
+            <span class="exp-item-desc">= obey the law: tuân thủ pháp luật</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">remind</span>
+            <span class="badge-pill bad">nhắc nhở</span>
+            <span class="exp-item-desc">= nhắc ai việc gì</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Obey the law:</span> 
+          Hành động chấp hành pháp luật và các quy định luôn đi kèm với động từ 'obey': <span class='highlight-target'>obey the law</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">produce</span>: chế tạo, sản xuất đồ vật.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">remain</span>: còn lại, duy trì.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">remind</span>: nhắc nhở ai đó.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_19">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 19</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">I feel much better mentally when I complete everything a day before the due ______.</div>
+      <div class="options-grid" id="optgrid_19">
+        
+        <button class="option-btn" data-qid="19" data-key="A" data-correct="false" onclick="chooseAnswer(19, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">deadline</div>
+        </button>
+        <button class="option-btn" data-qid="19" data-key="B" data-correct="false" onclick="chooseAnswer(19, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">clay</div>
+        </button>
+        <button class="option-btn" data-qid="19" data-key="C" data-correct="false" onclick="chooseAnswer(19, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">crime</div>
+        </button>
+        <button class="option-btn" data-qid="19" data-key="D" data-correct="true" onclick="chooseAnswer(19, 'D', true, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">date</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_19">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Tôi thấy thoải mái tinh thần hơn khi hoàn thành mọi việc trước ngày đến hạn một ngày.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">deadline</span>
+            <span class="badge-pill bad">hạn chót</span>
+            <span class="exp-item-desc">= không nói due deadline</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">clay</span>
+            <span class="badge-pill bad">đất sét</span>
+            <span class="exp-item-desc">= làm gốm</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">crime</span>
+            <span class="badge-pill bad">tội phạm</span>
+            <span class="exp-item-desc">= sai nghĩa</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">date</span>
+            <span class="badge-pill good">due date</span>
+            <span class="exp-item-desc">= ngày đến hạn</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Due date:</span> 
+          Thuật ngữ chuẩn chỉ ngày hết hạn phải hoàn thành công việc hoặc nộp bài là: <span class='highlight-target'>due date</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">deadline</span>: không nói 'due deadline' vì bị lặp nghĩa thừa thãi.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">clay</span>: đất sét.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">crime</span>: tội ác, tội phạm.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_20">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 20</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">______ you live to the city center, ______ expensive the rent is.</div>
+      <div class="options-grid" id="optgrid_20">
+        
+        <button class="option-btn" data-qid="20" data-key="A" data-correct="true" onclick="chooseAnswer(20, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">The closer/the more</div>
+        </button>
+        <button class="option-btn" data-qid="20" data-key="B" data-correct="false" onclick="chooseAnswer(20, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">The closest/the more</div>
+        </button>
+        <button class="option-btn" data-qid="20" data-key="C" data-correct="false" onclick="chooseAnswer(20, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">Close/the more</div>
+        </button>
+        <button class="option-btn" data-qid="20" data-key="D" data-correct="false" onclick="chooseAnswer(20, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">Closer/the most</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_20">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Bạn sống càng gần trung tâm thành phố thì tiền thuê nhà càng đắt.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">The closer/the more</span>
+            <span class="badge-pill good">So sánh kép</span>
+            <span class="exp-item-desc">= The closer..., the more expensive...</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">The closest/the more</span>
+            <span class="badge-pill bad">Sai nhất</span>
+            <span class="exp-item-desc">= dùng so sánh nhất</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Close/the more</span>
+            <span class="badge-pill bad">Thiếu the</span>
+            <span class="exp-item-desc">= thiếu the ở vế 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Closer/the most</span>
+            <span class="badge-pill bad">Sai vế sau</span>
+            <span class="exp-item-desc">= dùng the most</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">The + comparative, the + comparative:</span> 
+          Công thức 'càng... càng...': <span class='highlight-target'>The closer + S1 + V1, the more expensive + S2 + V2</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">The closest/the more</span>: closest là so sánh nhất, không dùng trong so sánh kép.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Close/the more</span>: vế đầu thiếu 'the' và dạng so sánh hơn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Closer/the most</span>: thiếu 'the' ở vế 1 và vế 2 dùng so sánh nhất.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_21">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 21</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">You ______ get enough sleep if you want to stay focused during the day.</div>
+      <div class="options-grid" id="optgrid_21">
+        
+        <button class="option-btn" data-qid="21" data-key="A" data-correct="false" onclick="chooseAnswer(21, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">shouldn’t</div>
+        </button>
+        <button class="option-btn" data-qid="21" data-key="B" data-correct="true" onclick="chooseAnswer(21, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">must</div>
+        </button>
+        <button class="option-btn" data-qid="21" data-key="C" data-correct="false" onclick="chooseAnswer(21, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">might</div>
+        </button>
+        <button class="option-btn" data-qid="21" data-key="D" data-correct="false" onclick="chooseAnswer(21, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">do</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_21">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Bạn phải ngủ đủ giấc nếu muốn giữ được sự tập trung ban ngày.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">shouldn’t</span>
+            <span class="badge-pill bad">không nên</span>
+            <span class="exp-item-desc">= ngược nghĩa</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">must</span>
+            <span class="badge-pill good">phải</span>
+            <span class="exp-item-desc">= điều kiện bắt buộc</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">might</span>
+            <span class="badge-pill bad">có thể</span>
+            <span class="exp-item-desc">= không thể hiện tính bắt buộc</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">do</span>
+            <span class="badge-pill bad">trợ động từ</span>
+            <span class="exp-item-desc">= sai nghĩa</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Must chỉ điều kiện bắt buộc:</span> 
+          Muốn duy trì sự tỉnh táo và tập trung, việc ngủ đủ giấc là điều kiện bắt buộc: <span class='highlight-target'>You must get enough sleep</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">shouldn’t</span>: ngược nghĩa hoàn toàn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">might</span>: chỉ khả năng mơ hồ, không thể hiện tính bắt buộc của lời khuyên.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">do</span>: không phù hợp ngữ nghĩa câu điều kiện.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_22">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 22</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">Please don’t talk to David now, he is ______ a bad mood because of the noise from neighbors.</div>
+      <div class="options-grid" id="optgrid_22">
+        
+        <button class="option-btn" data-qid="22" data-key="A" data-correct="false" onclick="chooseAnswer(22, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">back</div>
+        </button>
+        <button class="option-btn" data-qid="22" data-key="B" data-correct="false" onclick="chooseAnswer(22, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">at</div>
+        </button>
+        <button class="option-btn" data-qid="22" data-key="C" data-correct="false" onclick="chooseAnswer(22, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">of</div>
+        </button>
+        <button class="option-btn" data-qid="22" data-key="D" data-correct="true" onclick="chooseAnswer(22, 'D', true, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">in</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_22">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Đừng nói chuyện với David lúc này, anh ấy đang bực bội vì tiếng ồn hàng xóm.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">back</span>
+            <span class="badge-pill bad">sau</span>
+            <span class="exp-item-desc">= sai</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">at</span>
+            <span class="badge-pill bad">tại</span>
+            <span class="exp-item-desc">= sai giới từ</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">of</span>
+            <span class="badge-pill bad">của</span>
+            <span class="exp-item-desc">= sai giới từ</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">in</span>
+            <span class="badge-pill good">in a bad mood</span>
+            <span class="exp-item-desc">= đang trong tâm trạng xấu</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">In a bad mood:</span> 
+          Diễn đạt trạng thái cảm xúc của một người: <span class='highlight-target'>be in a bad mood</span> (đang bực bội, khó chịu trong người).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">back</span>: sai giới từ hoàn toàn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">at</span>: không đi với mood.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">of</span>: sai cấu trúc.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_23">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 23</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">The government encourages citizens ______ public transport more often.</div>
+      <div class="options-grid" id="optgrid_23">
+        
+        <button class="option-btn" data-qid="23" data-key="A" data-correct="true" onclick="chooseAnswer(23, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">to use</div>
+        </button>
+        <button class="option-btn" data-qid="23" data-key="B" data-correct="false" onclick="chooseAnswer(23, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">using</div>
+        </button>
+        <button class="option-btn" data-qid="23" data-key="C" data-correct="false" onclick="chooseAnswer(23, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">to using</div>
+        </button>
+        <button class="option-btn" data-qid="23" data-key="D" data-correct="false" onclick="chooseAnswer(23, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">use</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_23">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Chính phủ khuyến khích người dân sử dụng phương tiện công cộng thường xuyên hơn.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">to use</span>
+            <span class="badge-pill good">to-V</span>
+            <span class="exp-item-desc">= encourage sb to-V</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">using</span>
+            <span class="badge-pill bad">V-ing</span>
+            <span class="exp-item-desc">= sai sau tân ngữ</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">to using</span>
+            <span class="badge-pill bad">to V-ing</span>
+            <span class="exp-item-desc">= sai ngữ pháp</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">use</span>
+            <span class="badge-pill bad">nguyên mẫu</span>
+            <span class="exp-item-desc">= thiếu to</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Encourage sb to-V:</span> 
+          Động từ 'encourage' khi có tân ngữ chỉ người đi kèm bắt buộc phải dùng động từ nguyên mẫu có 'to': <span class='highlight-target'>encourage sb + to-V</span> -> <strong>encourage citizens to use</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">using</span>: encourage không đi với V-ing khi đã có tân ngữ.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">to using</span>: sau 'to' phải là động từ nguyên mẫu.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">use</span>: thiếu 'to'.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_24">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 24</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">They haven’t decided ______ to build on the empty lot downtown.</div>
+      <div class="options-grid" id="optgrid_24">
+        
+        <button class="option-btn" data-qid="24" data-key="A" data-correct="false" onclick="chooseAnswer(24, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">that</div>
+        </button>
+        <button class="option-btn" data-qid="24" data-key="B" data-correct="true" onclick="chooseAnswer(24, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">what</div>
+        </button>
+        <button class="option-btn" data-qid="24" data-key="C" data-correct="false" onclick="chooseAnswer(24, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">whom</div>
+        </button>
+        <button class="option-btn" data-qid="24" data-key="D" data-correct="false" onclick="chooseAnswer(24, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">which</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_24">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Họ chưa quyết định sẽ xây cái gì trên khu đất trống ở trung tâm.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">that</span>
+            <span class="badge-pill bad">rằng</span>
+            <span class="exp-item-desc">= không đi với to-V</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">what</span>
+            <span class="badge-pill good">cái gì</span>
+            <span class="exp-item-desc">= what to build: xây cái gì</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">whom</span>
+            <span class="badge-pill bad">ai</span>
+            <span class="exp-item-desc">= chỉ người</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">which</span>
+            <span class="badge-pill bad">cái nào</span>
+            <span class="exp-item-desc">= cần danh sách lựa chọn</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">What to build:</span> 
+          Động từ 'build' (xây dựng) cần một tân ngữ là công trình/đồ vật. Khi chưa biết xây cái gì, ta dùng: <span class='highlight-target'>what to build</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">that</span>: không đi với cấu trúc to-V.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">whom</span>: chỉ người, không thể là tân ngữ của 'build'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">which</span>: chỉ dùng khi đã có tập hợp các phương án cụ thể để chọn.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_25">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 25</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">______ processed food you eat, the easier it is to manage your weight.</div>
+      <div class="options-grid" id="optgrid_25">
+        
+        <button class="option-btn" data-qid="25" data-key="A" data-correct="true" onclick="chooseAnswer(25, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">The less</div>
+        </button>
+        <button class="option-btn" data-qid="25" data-key="B" data-correct="false" onclick="chooseAnswer(25, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">The least</div>
+        </button>
+        <button class="option-btn" data-qid="25" data-key="C" data-correct="false" onclick="chooseAnswer(25, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">Less</div>
+        </button>
+        <button class="option-btn" data-qid="25" data-key="D" data-correct="false" onclick="chooseAnswer(25, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">Lesser</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_25">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Bạn càng ăn ít thực phẩm chế biến sẵn thì càng dễ quản lý cân nặng.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">The less</span>
+            <span class="badge-pill good">So sánh hơn</span>
+            <span class="exp-item-desc">= The less + N không đếm được</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">The least</span>
+            <span class="badge-pill bad">So sánh nhất</span>
+            <span class="exp-item-desc">= sai cấu trúc</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Less</span>
+            <span class="badge-pill bad">Thiếu the</span>
+            <span class="exp-item-desc">= thiếu The</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Lesser</span>
+            <span class="badge-pill bad">Kém quan trọng</span>
+            <span class="exp-item-desc">= sai nghĩa</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">The less + Uncountable Noun:</span> 
+          Cấu trúc: <span class='highlight-target'>The less + N (không đếm được) + S + V, the easier it is...</span>. 'Food' là danh từ không đếm được nên dùng dạng so sánh hơn 'less'.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">The least</span>: so sánh nhất không dùng trong cấu trúc 'càng... càng...'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Less</span>: thiếu mạo từ 'The'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Lesser</span>: mang nghĩa thứ yếu, không dùng định lượng thức ăn.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_26">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 26</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">Many commuters worry they will ______ gas or battery power stuck in traffic jam.</div>
+      <div class="options-grid" id="optgrid_26">
+        
+        <button class="option-btn" data-qid="26" data-key="A" data-correct="false" onclick="chooseAnswer(26, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">break down</div>
+        </button>
+        <button class="option-btn" data-qid="26" data-key="B" data-correct="true" onclick="chooseAnswer(26, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">run out of</div>
+        </button>
+        <button class="option-btn" data-qid="26" data-key="C" data-correct="false" onclick="chooseAnswer(26, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">stay up</div>
+        </button>
+        <button class="option-btn" data-qid="26" data-key="D" data-correct="false" onclick="chooseAnswer(26, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">put in</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_26">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nhiều người đi làm lo rằng họ sẽ hết xăng hoặc cạn pin khi kẹt xe.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">break down</span>
+            <span class="badge-pill bad">hỏng xe</span>
+            <span class="exp-item-desc">= không có tân ngữ gas</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">run out of</span>
+            <span class="badge-pill good">hết sạch</span>
+            <span class="exp-item-desc">= run out of gas: hết xăng</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">stay up</span>
+            <span class="badge-pill bad">thức khuya</span>
+            <span class="exp-item-desc">= sai nghĩa</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">put in</span>
+            <span class="badge-pill bad">đưa vào</span>
+            <span class="exp-item-desc">= không hợp nghĩa</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Run out of:</span> 
+          Thành ngữ chỉ việc dùng cạn kiệt nguồn cung cấp: <span class='highlight-target'>run out of gas / petrol / battery</span> (hết sạch xăng/năng lượng).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">break down</span>: nếu dùng break down thì không có 'gas or battery power' đằng sau.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">stay up</span>: thức đêm, sai nghĩa.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">put in</span>: bỏ vào, không đúng với ngữ cảnh tắc đường.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_27">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 27</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">______ skyscrapers they build, ______ the air quality gets.</div>
+      <div class="options-grid" id="optgrid_27">
+        
+        <button class="option-btn" data-qid="27" data-key="A" data-correct="false" onclick="chooseAnswer(27, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">Much/the bad</div>
+        </button>
+        <button class="option-btn" data-qid="27" data-key="B" data-correct="false" onclick="chooseAnswer(27, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">Most/the worst</div>
+        </button>
+        <button class="option-btn" data-qid="27" data-key="C" data-correct="true" onclick="chooseAnswer(27, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">The more/ the worse</div>
+        </button>
+        <button class="option-btn" data-qid="27" data-key="D" data-correct="false" onclick="chooseAnswer(27, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">More/worse</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_27">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Càng xây nhiều tòa nhà chọc trời thì chất lượng không khí càng tệ.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Much/the bad</span>
+            <span class="badge-pill bad">Sai dạng</span>
+            <span class="exp-item-desc">= sai cả 2 vế</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Most/the worst</span>
+            <span class="badge-pill bad">So sánh nhất</span>
+            <span class="exp-item-desc">= sai cấu trúc kép</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">The more/ the worse</span>
+            <span class="badge-pill good">The + comp</span>
+            <span class="exp-item-desc">= chuẩn so sánh kép</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">More/worse</span>
+            <span class="badge-pill bad">Thiếu the</span>
+            <span class="exp-item-desc">= thiếu The</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">The more... the worse:</span> 
+          1. Vế đầu số lượng danh từ đếm được nhiều hơn: <span class='highlight-target'>The more skyscrapers</span>.<br>2. Vế sau tính từ 'bad' chuyển sang so sánh hơn là 'worse': <span class='highlight-target'>the worse the air quality gets</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Much/the bad</span>: sai cả lượng từ và tính từ so sánh.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Most/the worst</span>: dùng cấp so sánh nhất là sai ngữ pháp.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">More/worse</span>: bắt buộc phải có 'The' ở đầu mỗi vế.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_28">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 28</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">I need to go to the pharmacy; can you ______ me ______ on your way?</div>
+      <div class="options-grid" id="optgrid_28">
+        
+        <button class="option-btn" data-qid="28" data-key="A" data-correct="false" onclick="chooseAnswer(28, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">hand-down</div>
+        </button>
+        <button class="option-btn" data-qid="28" data-key="B" data-correct="false" onclick="chooseAnswer(28, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">take-away</div>
+        </button>
+        <button class="option-btn" data-qid="28" data-key="C" data-correct="true" onclick="chooseAnswer(28, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">pick-up</div>
+        </button>
+        <button class="option-btn" data-qid="28" data-key="D" data-correct="false" onclick="chooseAnswer(28, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">save-from</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_28">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Tôi cần đi hiệu thuốc; bạn có thể đón/cho tôi đi nhờ trên đường đi được không?</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">hand-down</span>
+            <span class="badge-pill bad">truyền lại</span>
+            <span class="exp-item-desc">= gia tài/đồ đạc</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">take-away</span>
+            <span class="badge-pill bad">mang đi</span>
+            <span class="exp-item-desc">= thức ăn mang về</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">pick-up</span>
+            <span class="badge-pill good">đón ai</span>
+            <span class="exp-item-desc">= pick me up: cho đi nhờ/đón tôi</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">save-from</span>
+            <span class="badge-pill bad">cứu thoát</span>
+            <span class="exp-item-desc">= cứu nạn</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Pick someone up:</span> 
+          Cụm từ quen thuộc chỉ việc ghé đón ai bằng xe cộ: <span class='highlight-target'>pick someone up</span> -> <strong>pick me up on your way</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">hand-down</span>: truyền lại đồ cổ/gia tài.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">take-away</span>: đem đi nơi khác.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">save-from</span>: cứu sống khỏi thảm họa.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_29">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 29</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">If you skip breakfast, you ______ not have enough energy for school.</div>
+      <div class="options-grid" id="optgrid_29">
+        
+        <button class="option-btn" data-qid="29" data-key="A" data-correct="true" onclick="chooseAnswer(29, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">might</div>
+        </button>
+        <button class="option-btn" data-qid="29" data-key="B" data-correct="false" onclick="chooseAnswer(29, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">did</div>
+        </button>
+        <button class="option-btn" data-qid="29" data-key="C" data-correct="false" onclick="chooseAnswer(29, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">are</div>
+        </button>
+        <button class="option-btn" data-qid="29" data-key="D" data-correct="false" onclick="chooseAnswer(29, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">had</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_29">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nếu bạn bỏ bữa sáng, bạn có thể sẽ không đủ năng lượng học tập.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">might</span>
+            <span class="badge-pill good">có thể</span>
+            <span class="exp-item-desc">= might not have (ĐK loại 1)</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">did</span>
+            <span class="badge-pill bad">quá khứ</span>
+            <span class="exp-item-desc">= sai thì</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">are</span>
+            <span class="badge-pill bad">to be</span>
+            <span class="exp-item-desc">= are not have là sai ngữ pháp</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">had</span>
+            <span class="badge-pill bad">quá khứ</span>
+            <span class="exp-item-desc">= sai thì</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Modal verbs trong ĐK loại 1:</span> 
+          Mệnh đề If ở thì hiện tại đơn ('If you skip breakfast'). Mệnh đề chính diễn đạt một khả năng có thể xảy ra trong tương lai dùng: <span class='highlight-target'>might + not + V nguyên mẫu</span> -> <strong>you might not have</strong>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">did</span>: thuộc về thì quá khứ đơn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">are</span>: cấu trúc 'are not have' là sai ngữ pháp tiếng Anh.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">had</span>: thuộc về quá khứ, không phù hợp câu điều kiện loại 1.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_30">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 30</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">Teens should learn ______ to deal with stress in a healthy way.</div>
+      <div class="options-grid" id="optgrid_30">
+        
+        <button class="option-btn" data-qid="30" data-key="A" data-correct="false" onclick="chooseAnswer(30, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">who</div>
+        </button>
+        <button class="option-btn" data-qid="30" data-key="B" data-correct="true" onclick="chooseAnswer(30, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">how</div>
+        </button>
+        <button class="option-btn" data-qid="30" data-key="C" data-correct="false" onclick="chooseAnswer(30, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">that</div>
+        </button>
+        <button class="option-btn" data-qid="30" data-key="D" data-correct="false" onclick="chooseAnswer(30, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">why</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_30">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Thanh thiếu niên nên học cách giải tỏa căng thẳng lành mạnh.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">who</span>
+            <span class="badge-pill bad">ai</span>
+            <span class="exp-item-desc">= chỉ người</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">how</span>
+            <span class="badge-pill good">cách thức</span>
+            <span class="exp-item-desc">= learn how to do sth: học cách làm gì</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">that</span>
+            <span class="badge-pill bad">rằng</span>
+            <span class="exp-item-desc">= không đi với to-V</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">why</span>
+            <span class="badge-pill bad">tại sao</span>
+            <span class="exp-item-desc">= lý do</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Learn how to-V:</span> 
+          Chỉ việc học hỏi một phương pháp, kỹ năng làm việc gì đó: <span class='highlight-target'>learn how to deal with stress</span> (học cách đối phó với căng thẳng).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">who</span>: chỉ đối tượng con người.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">that</span>: không kết hợp với to-infinitive.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">why</span>: chỉ lý do nguyên nhân, không chỉ kỹ năng giải quyết.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_31">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 31</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">If you feel sleepy while driving, you ______ pull over immediately and take a rest.</div>
+      <div class="options-grid" id="optgrid_31">
+        
+        <button class="option-btn" data-qid="31" data-key="A" data-correct="false" onclick="chooseAnswer(31, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">won’t</div>
+        </button>
+        <button class="option-btn" data-qid="31" data-key="B" data-correct="false" onclick="chooseAnswer(31, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">had to</div>
+        </button>
+        <button class="option-btn" data-qid="31" data-key="C" data-correct="false" onclick="chooseAnswer(31, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">mustn’t</div>
+        </button>
+        <button class="option-btn" data-qid="31" data-key="D" data-correct="true" onclick="chooseAnswer(31, 'D', true, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">should</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_31">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nếu bạn thấy buồn ngủ khi lái xe, bạn nên tấp vào lề ngay để nghỉ ngơi.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">won’t</span>
+            <span class="badge-pill bad">sẽ không</span>
+            <span class="exp-item-desc">= nguy hiểm</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">had to</span>
+            <span class="badge-pill bad">đã phải</span>
+            <span class="exp-item-desc">= quá khứ</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">mustn’t</span>
+            <span class="badge-pill bad">cấm</span>
+            <span class="exp-item-desc">= cấm dừng xe là sai</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">should</span>
+            <span class="badge-pill good">nên</span>
+            <span class="exp-item-desc">= lời khuyên an toàn</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Should đưa ra lời khuyên:</span> 
+          Khi đưa ra lời khuyên thiết thực để phòng tránh tai nạn: <span class='highlight-target'>you should pull over</span> (bạn nên tấp xe vào lề đường).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">won’t</span>: ngược lại với nguyên tắc an toàn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">had to</span>: chỉ nghĩa quá khứ.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">mustn’t</span>: mang nghĩa cấm đoán, hoàn toàn phi lý.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_32">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 32</span>
+        <span class="q-type-pill">DẠNG 4 - CHỌN ĐÁP ÁN ĐÚNG</span>
+      </div>
+      <div class="q-text">______ is one of the main causes of air pollution in big cities.</div>
+      <div class="options-grid" id="optgrid_32">
+        
+        <button class="option-btn" data-qid="32" data-key="A" data-correct="false" onclick="chooseAnswer(32, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">Delivery person</div>
+        </button>
+        <button class="option-btn" data-qid="32" data-key="B" data-correct="true" onclick="chooseAnswer(32, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">Car exhaust</div>
+        </button>
+        <button class="option-btn" data-qid="32" data-key="C" data-correct="false" onclick="chooseAnswer(32, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">Tourist attraction</div>
+        </button>
+        <button class="option-btn" data-qid="32" data-key="D" data-correct="false" onclick="chooseAnswer(32, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">Concrete jungle</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_32">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Khí thải ô tô là một trong những nguyên nhân chính gây ô nhiễm không khí ở các thành phố lớn.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Delivery person</span>
+            <span class="badge-pill bad">người giao hàng</span>
+            <span class="exp-item-desc">= con người</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Car exhaust</span>
+            <span class="badge-pill good">khí thải ô tô</span>
+            <span class="exp-item-desc">= nguyên nhân gây ô nhiễm</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Tourist attraction</span>
+            <span class="badge-pill bad">điểm du lịch</span>
+            <span class="exp-item-desc">= danh lam</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Concrete jungle</span>
+            <span class="badge-pill bad">rừng bê tông</span>
+            <span class="exp-item-desc">= đô thị chật chội</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Car exhaust:</span> 
+          Nguyên nhân trực tiếp tạo ra khói bụi và khí độc hại làm ô nhiễm không khí (air pollution) là <span class='highlight-target'>car exhaust</span> (khí thải xe cơ giới).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Delivery person</span>: người giao hàng.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Tourist attraction</span>: điểm thu hút du khách.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Concrete jungle</span>: khu rừng bê tông.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-badge-card">
+      <span>📂</span>
+      <div>
+        <div>DẠNG 5: CÂU ĐỒNG NGHĨA (SENTENCE TRANSFORMATION)</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Mark the letter A, B, C, or D to indicate the sentence that is closest in meaning to each of the following questions.</div>
+      </div>
+    </div>
+        
+    <div class="question-card" id="card_33">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 33</span>
+        <span class="q-type-pill">DẠNG 5 - CÂU ĐỒNG NGHĨA</span>
+      </div>
+      <div class="q-text">Nhu’s parents let her join a fitness club to improve her health.</div>
+      <div class="options-grid" id="optgrid_33">
+        
+        <button class="option-btn" data-qid="33" data-key="A" data-correct="false" onclick="chooseAnswer(33, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">Nhu’s parents permitted her joining a fitness club to improve her health.</div>
+        </button>
+        <button class="option-btn" data-qid="33" data-key="B" data-correct="false" onclick="chooseAnswer(33, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">Nhu’s parents allowed her to joining a fitness club to improve her health.</div>
+        </button>
+        <button class="option-btn" data-qid="33" data-key="C" data-correct="false" onclick="chooseAnswer(33, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">Nhu’s parents permitted her join a fitness club to improve her health.</div>
+        </button>
+        <button class="option-btn" data-qid="33" data-key="D" data-correct="true" onclick="chooseAnswer(33, 'D', true, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">Nhu’s parents allowed her to join a fitness club to improve her health.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_33">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Bố mẹ Như cho phép bạn ấy tham gia câu lạc bộ thể hình để nâng cao sức khỏe.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill bad">Sai sau permit</span>
+            <span class="exp-item-desc">= permit sb to-V</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill bad">Sai to joining</span>
+            <span class="exp-item-desc">= thừa -ing</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill bad">Thiếu to</span>
+            <span class="exp-item-desc">= thiếu to</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill good">Chuẩn cấu trúc</span>
+            <span class="exp-item-desc">= allow sb to-V</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Let sb do sth = Allow sb to do sth:</span> 
+          Động từ 'let' đi với động từ nguyên thể không to: <em>let her join</em>. Khi chuyển sang động từ 'allow', bắt buộc phải dùng động từ nguyên thể có 'to': <span class='highlight-target'>allowed her to join</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu A</span>: sai cấu trúc permit (phải là permitted her to join).</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu B</span>: thừa đuôi -ing sau 'to'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu C</span>: thiếu 'to' sau permitted her.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_34">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 34</span>
+        <span class="q-type-pill">DẠNG 5 - CÂU ĐỒNG NGHĨA</span>
+      </div>
+      <div class="q-text">Nga has a good relationship with Tan since he always supports her at work.</div>
+      <div class="options-grid" id="optgrid_34">
+        
+        <button class="option-btn" data-qid="34" data-key="A" data-correct="true" onclick="chooseAnswer(34, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">Nga gets on well with Tan since he always supports her at work.</div>
+        </button>
+        <button class="option-btn" data-qid="34" data-key="B" data-correct="false" onclick="chooseAnswer(34, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">Nga looks for Tan since he always supports her at work.</div>
+        </button>
+        <button class="option-btn" data-qid="34" data-key="C" data-correct="false" onclick="chooseAnswer(34, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">Nga looks after Tan since he always supports her at work.</div>
+        </button>
+        <button class="option-btn" data-qid="34" data-key="D" data-correct="false" onclick="chooseAnswer(34, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">Nga keeps away from Tan since he always supports her at work.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_34">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nga có mối quan hệ tốt với Tân vì anh ấy luôn giúp đỡ cô trong công việc.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill good">Hòa thuận, ăn ý</span>
+            <span class="exp-item-desc">= get on well with = have a good relationship with</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill bad">Tìm kiếm</span>
+            <span class="exp-item-desc">= look for</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill bad">Chăm sóc</span>
+            <span class="exp-item-desc">= look after</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Tránh xa</span>
+            <span class="exp-item-desc">= keep away from</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Have a good relationship with = Get on well with:</span> 
+          Cụm từ chỉ mối quan hệ hòa thuận, tốt đẹp: <span class='highlight-target'>have a good relationship with sb = get on well with sb</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu B</span>: look for là tìm kiếm.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu C</span>: look after là chăm sóc.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: keep away from là tránh xa, ngược nghĩa.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_35">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 35</span>
+        <span class="q-type-pill">DẠNG 5 - CÂU ĐỒNG NGHĨA</span>
+      </div>
+      <div class="q-text">City dwellers should join hands so as to keep the neighborhood cleaner and more beautiful.</div>
+      <div class="options-grid" id="optgrid_35">
+        
+        <button class="option-btn" data-qid="35" data-key="A" data-correct="false" onclick="chooseAnswer(35, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">If city dwellers join hands, the neighborhood must be cleaner and more beautiful.</div>
+        </button>
+        <button class="option-btn" data-qid="35" data-key="B" data-correct="false" onclick="chooseAnswer(35, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">If city dwellers join hands, the neighborhood would be cleaner and more beautiful.</div>
+        </button>
+        <button class="option-btn" data-qid="35" data-key="C" data-correct="true" onclick="chooseAnswer(35, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">If city dwellers join hands, the neighborhood will be cleaner and more beautiful.</div>
+        </button>
+        <button class="option-btn" data-qid="35" data-key="D" data-correct="false" onclick="chooseAnswer(35, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">If city dwellers join hands, the neighborhood should be clean and more beautiful.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_35">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nếu người dân chung tay, khu phố sẽ trở nên sạch và đẹp hơn.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill bad">Dùng must ép buộc</span>
+            <span class="exp-item-desc">= không tự nhiên</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill bad">Dùng would</span>
+            <span class="exp-item-desc">= sai thì ĐK loại 1</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill good">Chuẩn ĐK loại 1</span>
+            <span class="exp-item-desc">= If + V(hiện tại), will + V</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Mất so sánh hơn</span>
+            <span class="exp-item-desc">= dùng clean thay vì cleaner</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Câu điều kiện loại 1:</span> 
+          Chung tay để khu phố sạch đẹp hơn tương đương với câu điều kiện có thể xảy ra: <span class='highlight-target'>If city dwellers join hands, the neighborhood will be cleaner and more beautiful</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu A</span>: must mang sắc thái bắt buộc, không chỉ kết quả tất yếu.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu B</span>: lẫn lộn thì hiện tại với 'would'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: mất cấu trúc so sánh hơn song hành (cleaner and more beautiful).</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_36">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 36</span>
+        <span class="q-type-pill">DẠNG 5 - CÂU ĐỒNG NGHĨA</span>
+      </div>
+      <div class="q-text">It took me three weeks to build a regular workout routine.</div>
+      <div class="options-grid" id="optgrid_36">
+        
+        <button class="option-btn" data-qid="36" data-key="A" data-correct="false" onclick="chooseAnswer(36, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">I spent three weeks to build a regular workout routine.</div>
+        </button>
+        <button class="option-btn" data-qid="36" data-key="B" data-correct="true" onclick="chooseAnswer(36, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">I spent three weeks building a regular workout routine.</div>
+        </button>
+        <button class="option-btn" data-qid="36" data-key="C" data-correct="false" onclick="chooseAnswer(36, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">I spent three weeks to building a regular workout routine.</div>
+        </button>
+        <button class="option-btn" data-qid="36" data-key="D" data-correct="false" onclick="chooseAnswer(36, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">I spent three weeks builds a regular workout routine.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_36">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Tôi mất 3 tuần để xây dựng một thói quen tập luyện đều đặn.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill bad">Sai to build</span>
+            <span class="exp-item-desc">= spend time + V-ing</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill good">Chuẩn cấu trúc</span>
+            <span class="exp-item-desc">= spent time building</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill bad">Sai to building</span>
+            <span class="exp-item-desc">= sai</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Sai builds</span>
+            <span class="exp-item-desc">= sai</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">It took sb time to-V = S spent time V-ing:</span> 
+          Cấu trúc tiêu tốn thời gian: <span class='highlight-target'>It took me three weeks to build... = I spent three weeks building...</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu A</span>: spend time không đi với to-infinitive.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu C</span>: không dùng 'to building'.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: chia 'builds' sai ngữ pháp.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_37">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 37</span>
+        <span class="q-type-pill">DẠNG 5 - CÂU ĐỒNG NGHĨA</span>
+      </div>
+      <div class="q-text">The young often have a tendency to move to bigger cities in search of job prospects.</div>
+      <div class="options-grid" id="optgrid_37">
+        
+        <button class="option-btn" data-qid="37" data-key="A" data-correct="false" onclick="chooseAnswer(37, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">The young often feel free to move to bigger cities in search of job prospects.</div>
+        </button>
+        <button class="option-btn" data-qid="37" data-key="B" data-correct="false" onclick="chooseAnswer(37, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">The young often try to move to bigger cities in search of job prospects.</div>
+        </button>
+        <button class="option-btn" data-qid="37" data-key="C" data-correct="true" onclick="chooseAnswer(37, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">The young often intend to move to bigger cities in search of job prospects.</div>
+        </button>
+        <button class="option-btn" data-qid="37" data-key="D" data-correct="false" onclick="chooseAnswer(37, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">The young often mean to move to bigger cities in search of job prospects.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_37">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Giới trẻ thường có xu hướng/dự định chuyển tới các thành phố lớn để tìm kiếm việc làm.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill bad">Cứ tự nhiên</span>
+            <span class="exp-item-desc">= feel free</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill bad">Cố gắng</span>
+            <span class="exp-item-desc">= try</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill good">Có xu hướng/ý định</span>
+            <span class="exp-item-desc">= intend to move</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Có ý định (nhận lỗi)</span>
+            <span class="exp-item-desc">= mean to</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Have a tendency to = Intend to:</span> 
+          Cụm danh từ <span class='highlight-target'>have a tendency to do sth</span> (có xu hướng/dự định làm gì) đồng nghĩa chuẩn xác nhất với <strong>intend to move</strong> (có khuynh hướng/ý định di chuyển).
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu A</span>: feel free là cứ tự nhiên làm gì.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu B</span>: try là cố gắng nỗ lực.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: mean to thường dùng trong câu phủ định nhận lỗi.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-badge-card">
+      <span>📂</span>
+      <div>
+        <div>DẠNG 6: KẾT HỢP CÂU (SENTENCE COMBINATION)</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Mark the letter A, B, C, or D to indicate the sentence that is best combined from the two given sentences.</div>
+      </div>
+    </div>
+        
+    <div class="question-card" id="card_38">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 38</span>
+        <span class="q-type-pill">DẠNG 6 - KẾT HỢP CÂU</span>
+      </div>
+      <div class="q-text">The city develops quickly. The cost of living becomes higher.</div>
+      <div class="options-grid" id="optgrid_38">
+        
+        <button class="option-btn" data-qid="38" data-key="A" data-correct="false" onclick="chooseAnswer(38, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">The more the city develops quickly, the higher the cost of living becomes.</div>
+        </button>
+        <button class="option-btn" data-qid="38" data-key="B" data-correct="true" onclick="chooseAnswer(38, 'B', true, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">The quicker the city develops, the higher the cost of living becomes.</div>
+        </button>
+        <button class="option-btn" data-qid="38" data-key="C" data-correct="false" onclick="chooseAnswer(38, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">The city develops more quickly, the cost of living becomes higher.</div>
+        </button>
+        <button class="option-btn" data-qid="38" data-key="D" data-correct="false" onclick="chooseAnswer(38, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">The cost of living is high although the city develops quickly.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_38">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Thành phố phát triển càng nhanh thì chi phí sinh hoạt càng đắt đỏ.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill bad">Thừa từ</span>
+            <span class="exp-item-desc">= sai so sánh</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill good">Chuẩn so sánh kép</span>
+            <span class="exp-item-desc">= The quicker..., the higher...</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill bad">Thiếu the</span>
+            <span class="exp-item-desc">= thiếu The ở đầu</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Sai liên từ</span>
+            <span class="exp-item-desc">= although là sai nghĩa</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">So sánh kép kết hợp câu:</span> 
+          Đưa trạng từ 'quickly' lên trước làm dạng so sánh hơn: <span class='highlight-target'>The quicker the city develops</span>, kết hợp với <span class='highlight-target'>the higher the cost of living becomes</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu A</span>: cấu trúc lộn xộn, sai ngữ pháp so sánh.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu C</span>: thiếu 'The' ở đầu hai mệnh đề.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: dùng although làm sai lệch hoàn toàn ý nghĩa đề bài.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_39">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 39</span>
+        <span class="q-type-pill">DẠNG 6 - KẾT HỢP CÂU</span>
+      </div>
+      <div class="q-text">You eat too much fast food. You will gain weight easily.</div>
+      <div class="options-grid" id="optgrid_39">
+        
+        <button class="option-btn" data-qid="39" data-key="A" data-correct="true" onclick="chooseAnswer(39, 'A', true, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">If you eat too much fast food, you will gain weight easily.</div>
+        </button>
+        <button class="option-btn" data-qid="39" data-key="B" data-correct="false" onclick="chooseAnswer(39, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">You will gain weight easily if you don’t eat too much fast food.</div>
+        </button>
+        <button class="option-btn" data-qid="39" data-key="C" data-correct="false" onclick="chooseAnswer(39, 'C', false, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">If you will eat too much fast food, you gain weight easily.</div>
+        </button>
+        <button class="option-btn" data-qid="39" data-key="D" data-correct="false" onclick="chooseAnswer(39, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">You eat too much fast food if you will gain weight easily.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_39">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Nếu bạn ăn quá nhiều đồ ăn nhanh, bạn sẽ bị tăng cân dễ dàng.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill good">Chuẩn ĐK loại 1</span>
+            <span class="exp-item-desc">= If + V(hiện tại), will + V</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill bad">Ngược nghĩa</span>
+            <span class="exp-item-desc">= thêm don't</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill bad">Dùng will trong if</span>
+            <span class="exp-item-desc">= sai ngữ pháp</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Đảo mệnh đề sai</span>
+            <span class="exp-item-desc">= sai cấu trúc</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">Câu điều kiện loại 1:</span> 
+          Câu diễn tả nguyên nhân và kết quả có thể xảy ra: <span class='highlight-target'>If you eat too much fast food, you will gain weight easily</span>.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu B</span>: ngược nghĩa hoàn toàn.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu C</span>: tuyệt đối không dùng 'will' trong mệnh đề If.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: đảo lộn nhân quả và sai quy tắc thì.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="card_40">
+      <div class="q-header">
+        <span class="q-number-pill">CÂU 40</span>
+        <span class="q-type-pill">DẠNG 6 - KẾT HỢP CÂU</span>
+      </div>
+      <div class="q-text">People use public transport more. There are fewer traffic jams.</div>
+      <div class="options-grid" id="optgrid_40">
+        
+        <button class="option-btn" data-qid="40" data-key="A" data-correct="false" onclick="chooseAnswer(40, 'A', false, this)">
+          <div class="opt-letter">A</div>
+          <div class="opt-text">The more public transport people use, the less traffic jams there are.</div>
+        </button>
+        <button class="option-btn" data-qid="40" data-key="B" data-correct="false" onclick="chooseAnswer(40, 'B', false, this)">
+          <div class="opt-letter">B</div>
+          <div class="opt-text">There are fewer traffic jams although people use public transport more.</div>
+        </button>
+        <button class="option-btn" data-qid="40" data-key="C" data-correct="true" onclick="chooseAnswer(40, 'C', true, this)">
+          <div class="opt-letter">C</div>
+          <div class="opt-text">The more people use public transport, the fewer traffic jams there are.</div>
+        </button>
+        <button class="option-btn" data-qid="40" data-key="D" data-correct="false" onclick="chooseAnswer(40, 'D', false, this)">
+          <div class="opt-letter">D</div>
+          <div class="opt-text">People use public transport more because there are fewer traffic jams.</div>
+        </button>
+      </div>
+      <div class="explanation-box" id="exp_40">
+        <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+        <div class="translation-bar">
+          <span>💬</span>
+          <div><strong>Dịch:</strong> Mọi người càng dùng phương tiện công cộng nhiều thì càng có ít vụ tắc đường.</div>
+        </div>
+        <div class="step-section">
+          <div class="step-header">1. Phân tích 4 đáp án:</div>
+          <div class="exp-grid">
+            
+          <div class="exp-item-card">
+            <span class="opt-name">Câu A</span>
+            <span class="badge-pill bad">Dùng less sai</span>
+            <span class="exp-item-desc">= traffic jams phải dùng fewer</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu B</span>
+            <span class="badge-pill bad">Dùng although</span>
+            <span class="exp-item-desc">= sai nghĩa</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu C</span>
+            <span class="badge-pill good">Chuẩn ngữ pháp</span>
+            <span class="exp-item-desc">= The more..., the fewer traffic jams...</span>
+          </div>
+          <div class="exp-item-card">
+            <span class="opt-name">Câu D</span>
+            <span class="badge-pill bad">Ngược nhân quả</span>
+            <span class="exp-item-desc">= sai logic</span>
+          </div>
+          </div>
+        </div>
+        <div class="why-correct-box">
+          <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+          <span class="highlight-rule">The more... the fewer + Plural Countable Noun:</span> 
+          Vì 'traffic jams' (những vụ ùn tắc giao thông) là danh từ số nhiều đếm được, dạng so sánh hơn bắt buộc phải là <span class='highlight-target'>the fewer traffic jams</span>, không được dùng 'the less'. Do đó đáp án C là chính xác tuyệt đối.
+        </div>
+        <div class="why-wrong-box">
+          <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+          
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu A</span>: dùng 'the less traffic jams' là sai ngữ pháp danh từ đếm được.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu B</span>: dùng although phá vỡ mối liên hệ nguyên nhân - kết quả.</div>
+          <div style="margin-top: 4px;">• <span class="highlight-wrong">Câu D</span>: đảo ngược chiều logic của sự việc.</div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+    <div class="submit-bar">
+      <button class="btn-submit" onclick="submitTest()">
+        <span>🚀</span> NỘP BÀI & XEM ĐÁNH GIÁ TỔNG KẾT
+      </button>
+    </div>
+
+    <!-- BANNER DƯỚI ĐƯỢC CẬP NHẬT CHUẨN XÁC THEO YÊU CẦU CỦA CÔ LÊ HẰNG -->
+    <div class="promo-banner">
+      <div class="promo-title">
+        PH HS đăng kí học tiếng anh Khối 1 đến 12, IELTS vui lòng liên hệ Ms Lê Hằng English
+      </div>
+      <div>
+        <div class="promo-phone-pill">
+          <span>📲</span> Zalo: 0584 965 348 (Ms Lê Hằng English)
+        </div>
+      </div>
+      <div class="promo-sub">
+        ✨ Hình thức học: Online + Offline tại Linh Đàm · Luyện thi 9 lên 10 chuyên sâu & hiệu quả cao!
+      </div>
+    </div>
+
+  </div>
+
+  <div id="resultModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon" id="modalEmoji">🎉</div>
+      <h2 style="font-size: 26px; font-weight: 900; color: #2D3436; margin-bottom: 6px;">KẾT QUẢ BÀI THI</h2>
+      <div class="modal-score" id="modalScoreText">0 / 40</div>
+      <div id="modalPercent" style="font-size: 16px; font-weight: 800; color: #636E72;">(0%)</div>
+      
+      <div class="modal-feedback" id="modalTeacherNote"></div>
+
+      <button class="btn-retry" onclick="restartTest()">
+        🔄 Làm lại bài từ đầu
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let answeredQuestions = {};
+    let totalQuestions = 40;
+
+    // Web Audio API
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playCorrectSound() {
+      initAudio();
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + index * 0.08);
+
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime + index * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + index * 0.08 + 0.35);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime + index * 0.08);
+        osc.stop(audioCtx.currentTime + index * 0.08 + 0.36);
+      });
+    }
+
+    function playWrongSound() {
+      initAudio();
+      const notes = [329.63, 293.66, 220.00];
+      notes.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + index * 0.12);
+
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime + index * 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + index * 0.12 + 0.28);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime + index * 0.12);
+        osc.stop(audioCtx.currentTime + index * 0.12 + 0.3);
+      });
+    }
+
+    // Confetti Engine
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerConfetti() {
+      confettiParticles = [];
+      const colors = ['#FF4757', '#FDCB6E', '#00C9A7', '#8854C0', '#0984E3', '#00D26A'];
+      for (let i = 0; i < 70; i++) {
+        confettiParticles.push({
+          x: window.innerWidth / 2 + (Math.random() - 0.5) * 220,
+          y: window.innerHeight / 2 - 100,
+          w: Math.random() * 10 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 14,
+          vy: Math.random() * -12 - 4,
+          gravity: 0.45,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 12,
+          opacity: 1
+        });
+      }
+      animateConfetti();
+    }
+
+    let confettiAnimId = null;
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+
+      confettiParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.rotation += p.rotationSpeed;
+        p.opacity -= 0.012;
+
+        if (p.opacity > 0) {
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+      });
+
+      if (alive) {
+        confettiAnimId = requestAnimationFrame(animateConfetti);
+      } else {
+        cancelAnimationFrame(confettiAnimId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // Xử lý chọn đáp án
+    function chooseAnswer(qid, key, isCorrect, btn) {
+      if (answeredQuestions[qid]) return;
+
+      answeredQuestions[qid] = { chosen: key, isCorrect: isCorrect };
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        playCorrectSound();
+        triggerConfetti();
+      } else {
+        btn.classList.add('wrong');
+        playWrongSound();
+      }
+
+      // Vô hiệu hóa các nút khác cùng câu
+      const grid = document.getElementById('optgrid_' + qid);
+      const buttons = grid.querySelectorAll('.option-btn');
+      buttons.forEach(b => b.classList.add('disabled'));
+
+      // Mở hộp giải thích ngay lập tức
+      const expBox = document.getElementById('exp_' + qid);
+      if (expBox) {
+        expBox.style.display = 'block';
+      }
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const keys = Object.keys(answeredQuestions);
+      const answeredCount = keys.length;
+      const correctCount = keys.filter(k => answeredQuestions[k].isCorrect).length;
+
+      document.getElementById('starCounter').innerText = correctCount;
+      document.getElementById('correctCounter').innerText = correctCount;
+
+      const percent = (answeredCount / totalQuestions) * 100;
+      document.getElementById('progressBarFill').style.width = percent + '%';
+    }
+
+    function submitTest() {
+      const keys = Object.keys(answeredQuestions);
+      const correctCount = keys.filter(k => answeredQuestions[k].isCorrect).length;
+      const percentage = Math.round((correctCount / totalQuestions) * 100);
+
+      document.getElementById('modalScoreText').innerText = correctCount + ' / ' + totalQuestions + ' CÂU ĐÚNG';
+      document.getElementById('modalPercent').innerText = '(' + percentage + '%)';
+
+      let teacherNote = "";
+      let emoji = "🎉";
+
+      if (percentage < 50) {
+        emoji = "💪";
+        teacherNote = "“Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!”<br><br>— <strong>Ms Lê Hằng English</strong>";
+      } else if (percentage >= 50 && percentage <= 80) {
+        emoji = "🌟";
+        teacherNote = "“Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!”<br><br>— <strong>Ms Lê Hằng English</strong>";
+      } else {
+        emoji = "🏆";
+        teacherNote = "“Làm tốt lắm, con cố gắng ring điểm 10 ở lần sau nha!”<br><br>— <strong>Ms Lê Hằng English</strong>";
+      }
+
+      document.getElementById('modalEmoji').innerText = emoji;
+      document.getElementById('modalTeacherNote').innerHTML = teacherNote;
+      document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    function restartTest() {
+      answeredQuestions = {};
+      document.getElementById('resultModal').style.display = 'none';
+      
+      // Reset all buttons and explanations
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('correct', 'wrong', 'disabled');
+      });
+      document.querySelectorAll('.explanation-box').forEach(box => {
+        box.style.display = 'none';
+      });
+
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
